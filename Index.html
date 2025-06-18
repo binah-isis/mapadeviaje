@@ -1,0 +1,206 @@
+import React, { useState } from "react";
+
+function IoTFeedbackApp() {
+  const [step, setStep] = useState(1);
+  const [formData, setFormData] = useState({
+    usability: "",
+    performance: "",
+    support: "",
+    timeBenefit: "",
+    improvements: "",
+    expectations: "",
+    feelings: "",
+    perceivedValue: "",
+    recurringIssues: "",
+    personalization: "",
+    intangibleBenefits: "",
+    comparison: "",
+    recommendation: "",
+    observations: "",
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const nextStep = () => {
+    if (step < 15) setStep(step + 1);
+  };
+
+  const prevStep = () => {
+    if (step > 1) setStep(step - 1);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("User Feedback Submitted:", formData);
+    setStep(16); // Go to the Thank You message
+  };
+
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+      <div className="w-full max-w-md bg-white p-6 rounded-lg shadow-md">
+        {/* Step-by-Step Questions */}
+        {step === 1 && (
+          <div>
+            <h2 className="text-2xl font-bold mb-4 text-center">Usabilidad</h2>
+            <p className="mb-4 text-gray-600">
+              ¿Qué tan fácil te resulta usar la plataforma de IoT Blaulabs?
+            </p>
+            <select
+              name="usability"
+              value={formData.usability}
+              onChange={handleInputChange}
+              className="w-full p-2 border rounded-lg"
+            >
+              <option value="">Selecciona una opción</option>
+              <option value="Muy fácil">Muy fácil</option>
+              <option value="Fácil">Fácil</option>
+              <option value="Regular">Regular</option>
+              <option value="Difícil">Difícil</option>
+              <option value="Muy difícil">Muy difícil</option>
+            </select>
+            <div className="flex justify-between mt-4">
+              <button disabled className="bg-gray-300 text-white px-4 py-2 rounded-lg">
+                Anterior
+              </button>
+              <button
+                onClick={nextStep}
+                className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
+              >
+                Siguiente
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* Step 2: Performance */}
+        {step === 2 && (
+          <div>
+            <h2 className="text-2xl font-bold mb-4 text-center">Rendimiento</h2>
+            <p className="mb-4 text-gray-600">
+              ¿Cómo calificarías el rendimiento de la plataforma (velocidad, estabilidad, etc.)?
+            </p>
+            <select
+              name="performance"
+              value={formData.performance}
+              onChange={handleInputChange}
+              className="w-full p-2 border rounded-lg"
+            >
+              <option value="">Selecciona una opción</option>
+              <option value="Excelente">Excelente</option>
+              <option value="Bueno">Bueno</option>
+              <option value="Regular">Regular</option>
+              <option value="Malo">Malo</option>
+              <option value="Muy malo">Muy malo</option>
+            </select>
+            <div className="flex justify-between mt-4">
+              <button
+                onClick={prevStep}
+                className="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600"
+              >
+                Anterior
+              </button>
+              <button
+                onClick={nextStep}
+                className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
+              >
+                Siguiente
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* Step 3: Support */}
+        {step === 3 && (
+          <div>
+            <h2 className="text-2xl font-bold mb-4 text-center">Soporte Técnico</h2>
+            <p className="mb-4 text-gray-600">
+              ¿Qué tan satisfecho estás con el soporte técnico de Blaulabs?
+            </p>
+            <select
+              name="support"
+              value={formData.support}
+              onChange={handleInputChange}
+              className="w-full p-2 border rounded-lg"
+            >
+              <option value="">Selecciona una opción</option>
+              <option value="Muy satisfecho">Muy satisfecho</option>
+              <option value="Satisfecho">Satisfecho</option>
+              <option value="Neutral">Neutral</option>
+              <option value="Insatisfecho">Insatisfecho</option>
+              <option value="Muy insatisfecho">Muy insatisfecho</option>
+            </select>
+            <div className="flex justify-between mt-4">
+              <button
+                onClick={prevStep}
+                className="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600"
+              >
+                Anterior
+              </button>
+              <button
+                onClick={nextStep}
+                className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
+              >
+                Siguiente
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* Step 4: Benefit in Time */}
+        {step === 4 && (
+          <div>
+            <h2 className="text-2xl font-bold mb-4 text-center">Beneficio en Tiempo</h2>
+            <p className="mb-4 text-gray-600">
+              ¿Cuánto tiempo consideras que has ahorrado desde que usas Blaulabs?
+            </p>
+            <select
+              name="timeBenefit"
+              value={formData.timeBenefit}
+              onChange={handleInputChange}
+              className="w-full p-2 border rounded-lg"
+            >
+              <option value="">Selecciona una opción</option>
+              <option value="Más de 10 horas a la semana">Más de 10 horas a la semana</option>
+              <option value="Entre 5 y 10 horas a la semana">Entre 5 y 10 horas a la semana</option>
+              <option value="Entre 1 y 5 horas a la semana">Entre 1 y 5 horas a la semana</option>
+              <option value="Menos de 1 hora a la semana">Menos de 1 hora a la semana</option>
+              <option value="No he notado un ahorro de tiempo">No he notado un ahorro de tiempo</option>
+            </select>
+            <div className="flex justify-between mt-4">
+              <button
+                onClick={prevStep}
+                className="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600"
+              >
+                Anterior
+              </button>
+              <button
+                onClick={nextStep}
+                className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
+              >
+                Siguiente
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* Add remaining steps as needed */}
+        {/* ... */}
+
+        {/* Final Step: Thank You */}
+        {step === 16 && (
+          <div className="text-center">
+            <h2 className="text-2xl font-bold mb-4">¡Gracias por tu feedback!</h2>
+            <p className="text-gray-600">
+              Tu opinión es muy importante y nos ayudará a mejorar la experiencia de Blaulabs.
+            </p>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+export default IoTFeedbackApp;
